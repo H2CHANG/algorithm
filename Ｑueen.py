@@ -1,4 +1,5 @@
 N = 8
+# Matrix = [ [0] * N for x in range[N] ]
 Matrix = [ [0 for x in range(N)] for x in range(N)]
 test_Matrix = [ [0 for x in range(N)] for x in range(N)]
 
