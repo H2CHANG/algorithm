@@ -1,6 +1,9 @@
 import copy
 
+
 class Priority_queue:
+
+# maxium is first
 
     class _Item:
 
