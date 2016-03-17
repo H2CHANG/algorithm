@@ -38,17 +38,37 @@ class Priority_queue:
     def print_queue(self):
         for i in range(len(self.pq)):
             print('key=', self.pq[i]._key, "value=", self.pq[i]._value)
+    # insert in rear, then use upheap method to implement heappriority
 
+    def insert_1(self, v, k):
+        temp = self._Item(v,k)
+        self.pq.append(temp)
+
+        self._upheap(len(self.pq)-1)
+
+    def _parent(self, position):
+        return (position-1)//2
+    def _swap(self, position, parent):
+        self.pq[position], self.pq[parent] = self.pq[parent], self.pq[position]
+    def _upheap(self, position):
+        parent = self._parent(position)
+        if position>0 and self.pq[position]._key > self.pq[parent]._key:
+            self._swap(position, parent)
+            self._upheap(parent)
 
 
 t = Priority_queue(3,"this")
-t.print_queue()
+
 t.insert(5, "test")
-t.print_queue()
 t.insert(9, "fhwoeh")
-t.print_queue()
 t.insert(10, "hrehg")
-t.print_queue()
 t.insert(1, "gwgw")
 t.print_queue()
+print("***************")
+p = Priority_queue(3, "this")
+p.insert_1(5, "test")
+p.insert_1(9, "fhwoeh")
+p.insert_1(10, "hrehg")
+p.insert_1(1, "gwgw")
+p.print_queue()
 
