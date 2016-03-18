@@ -3,7 +3,7 @@ import copy
 
 class Priority_queue:
 
-# maxium is first
+# maxium is first 
 
     class _Item:
 
@@ -58,6 +58,37 @@ class Priority_queue:
         if position>0 and self.pq[position]._key > self.pq[parent]._key:
             self._swap(position, parent)
             self._upheap(parent)
+    def _left(self, position):
+        return 2*position + 1
+    def _right(self, position):
+        return 2* position + 2
+
+    def _has_left(self, position):
+        return self._left(position) < len(self.pq)
+    def _has_right(self, position):
+        return self._right(position) < len(self.pq)
+
+    # remove node, then downheap
+    def _downheap(self, position):
+        left = None
+        right= None
+        big_child = None
+        if self._has_left(position):
+            left = self._left(position)
+            big_child = left
+            if self._has_right(position):
+                right = self._right(position)
+                if self.pq[left]._key < self.pq[right]._key:
+                    big_child = right
+            if self.pq[big_child]._key > self.pq[position]._key:
+                self._swap(position, big_child)
+                self._downheap(big_child)
+
+    def delete(self, position):
+        self.pq[position] = self.pq[-1]
+        self.pq.pop(-1)
+        self._downheap(position)
+
 
 
 t = Priority_queue(3,"this")
@@ -74,4 +105,6 @@ p.insert_1(9, "fhwoeh")
 p.insert_1(10, "hrehg")
 p.insert_1(1, "gwgw")
 p.print_queue()
-
+print("%%%%%%%%%%%%%%%%%%%")
+p.delete(2)
+p.print_queue()
