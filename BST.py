@@ -112,10 +112,20 @@ class Tree:
                     del node
 
 
+    def is_root(self, node):
+       if self.root is node:
+           return True
+       else:
+           return False
 
 
             
-
+    def depth(self, val):
+       node, parent = self._find_1(val, self.root)
+       if self.is_root(node):
+           return 0
+       else:
+           return 1 + self.depth(parent.v)
 
     def printTree(self):
         if(self.root != None):
@@ -185,8 +195,12 @@ tree.rotate(40)
 tree.printTree()
 print("$$$$$$$$$$$$$")
 tree.goThrough2()
+print("%%%%%%%%%%%%%%%")
+print( tree.depth(51) )
 print("################")
 tree.rotate(29)
 tree.printTree()
 print("$$$$$$$$$$$$$")
 tree.goThrough2()
+print("%%%%%%%%%%%%%%%")
+print( tree.depth(51) )
