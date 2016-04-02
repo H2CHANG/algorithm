@@ -52,10 +52,10 @@ class Tree:
     def _find_1(self, val, node, parent = None):
 
         if(val == node.v):
-            print("get it !!!!!!!")
-            print('val_1 = ', val)
-            print(node)
-            print(parent)
+            #print("get it !!!!!!!")
+            #print('val_1 = ', val)
+            #print(node)
+            #print(parent)
             return (node, parent)
 
         elif(val < node.v and node.l != None):
@@ -127,6 +127,43 @@ class Tree:
             print(str(node.v) + ' ')
             self._printTree(node.r)
 
+    def rotate(self, val):
+        node = None
+        parent = None
+
+        if(self.root != None):
+            ret_val_1 = self._find_1(val, self.root)
+
+            node = ret_val_1[0]
+            parent = ret_val_1[1]
+
+            # right rotate
+            if parent.l is node:
+                if node.r != None:
+                    parent.l = node.r
+                else:
+                    parent.l = None
+                node.r = parent
+            #left rotate
+            else:
+                if node.l != None:
+                    parent.r = node.l
+                else:
+                    parent.r = None
+                node.l = parent
+            self.root = node
+
+
+    def goThrough2(self): # Breadth-First
+        Q_list = []
+        Q_list.append(self.root)
+        while len(Q_list) != 0:
+            temp = Q_list.pop(0)
+            print(temp.v)
+            if temp.l != None:
+                Q_list.append(temp.l)
+            if temp.r != None:
+                Q_list.append(temp.r)
 
 tree = Tree()
 tree.add(28)
@@ -143,3 +180,13 @@ tree.add(51)
 tree.printTree()
 tree.deleteNode(28)
 tree.printTree()
+print("################")
+tree.rotate(40)
+tree.printTree()
+print("$$$$$$$$$$$$$")
+tree.goThrough2()
+print("################")
+tree.rotate(29)
+tree.printTree()
+print("$$$$$$$$$$$$$")
+tree.goThrough2()
