@@ -41,9 +41,9 @@ class Tree:
         if(val == node.v):
             return node
         elif(val < node.v and node.l != None):
-            self._find(val, node.l)
+            return self._find(val, node.l)
         elif(val > node.v and node.r != None):
-            self._find(val, node.r)
+            return self._find(val, node.r)
 
     def deleteTree(self):
         # garbage collector will do this for us.
@@ -82,7 +82,7 @@ class Tree:
                 if node.l == None and node.r == None:
                     if node is parent.l:
                         parent.l = None
-                        del node
+                        node = None
                     else:
                         parent.r = None
                         del node
@@ -175,6 +175,36 @@ class Tree:
             if temp.r != None:
                 Q_list.append(temp.r)
 
+    # add Height
+    def is_leaf(self, node):
+        #print("if leaf")
+        #print(node.v)
+        if node.l == None and node.r == None:
+            return True
+        else:
+            return False
+
+    def children(self, node):
+        return (node.l, node.r)
+
+    def _height(self, node):
+
+        if self.is_leaf(node):
+            ##print("leaf")
+            #print(node.v)
+            return 0
+        else:
+            #print("not leaf")
+            #print(node.v)
+            return 1 + max(self._height(c) for c in self.children(node) if c != None)
+
+
+    def height(self, val):
+        node, parent = self._find_1(val, self.root)
+        #print("nodenodnoenohfoe")
+        #print(node)
+        return self._height(node)
+
 tree = Tree()
 tree.add(28)
 tree.add(15)
@@ -187,20 +217,41 @@ tree.add(29)
 tree.add(35)
 tree.add(41)
 tree.add(51)
+
 tree.printTree()
+print("!!!!!!!!!!!!!!")
+print( tree.height(28))
+print("delete node")
 tree.deleteNode(28)
 tree.printTree()
+print("!!!!!!!!!!!!!!")
+print( tree.height(29))
+
+
 print("################")
 tree.rotate(40)
 tree.printTree()
+
 print("$$$$$$$$$$$$$")
 tree.goThrough2()
+
+
 print("%%%%%%%%%%%%%%%")
 print( tree.depth(51) )
+
 print("################")
 tree.rotate(29)
 tree.printTree()
+
+
 print("$$$$$$$$$$$$$")
 tree.goThrough2()
+
+
 print("%%%%%%%%%%%%%%%")
 print( tree.depth(51) )
+
+
+print("!!!!!!!!!!!!!!")
+print( tree.height(40))
+
