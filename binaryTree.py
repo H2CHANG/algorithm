@@ -62,7 +62,7 @@ class BinaryTree:
 
 
 
-
+'''
 r = BinaryTree('a')
 r.insertNode('b')
 r.insertNode('c')
@@ -70,3 +70,4 @@ r.insertNode('d')
 r.insertNode('e')
 r.goThrough()
 r.goThrough2()
+'''

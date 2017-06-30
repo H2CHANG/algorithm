@@ -48,7 +48,7 @@ def inToPostfix(infix):
   postfix = ArrayStack()
   S = ArrayStack()
   for i in infix:
-    if (i.isalpha()):
+    if (i.isalpha() or i.isdigit()):
       postfix.push(i)
     elif (i == '('):
       S.push(i)
@@ -69,7 +69,4 @@ def inToPostfix(infix):
   while( not postfix.is_empty()):
       L.append(postfix.pop())
   L.reverse()
-  print(L)
-if __name__ == '__main__':
-  infix = "(a+b)*(c+d)"
-  inToPostfix(infix)
+  return L
