@@ -132,7 +132,7 @@ class BT:
         self._downheap(self.root)
 
     def _downheap(self, node):
-        
+
         # if left or right of node exist
         while node.left is not None or node.right is not None:
             if node.left is not None and node.right is None:
