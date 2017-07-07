@@ -12,6 +12,15 @@ class BT:
             self.right = right
             self.element = element
             self.left_count = 0
+
+
+
+
+
+
+
+
+
             self.right_count = 0
             self.father = None
 
