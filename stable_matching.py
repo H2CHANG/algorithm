@@ -21,6 +21,8 @@ for i in range(0,100):
 male_engage = [20] * 100
 female_engage = [30] * 100
 
+
+#every male must be paired
 while 20 in male_engage:
     male_index = 0
     #female_index = 0
@@ -29,6 +31,8 @@ while 20 in male_engage:
             male_index = i
             #print("i", i)
             break
+
+    #loop every male
     while len(male[male_index]) != 0:
         female_index = male[male_index].pop(0)
         #print("male index", male_index)
@@ -41,18 +45,22 @@ while 20 in male_engage:
         #print("female[female_index]", female[female_index])
         #print("female[female_index],idex", female[female_index].index(male_index))
 
+        #if female not engaged
         if female_engage[female_index] == 30:
 
 
             male_engage[male_index] = female_index
             female_engage[female_index] = male_index
             break
-
+        #if fmale engaged
         elif female_engage[female_index] != 30:
 
             male_temp_index = female_engage[female_index]
+
+            # more preference before
             if male_temp_index < male_index:
                 continue
+            #less preference before
             else:
 
                 male_engage[male_temp_index] = 20
